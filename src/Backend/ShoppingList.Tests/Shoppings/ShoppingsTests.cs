@@ -68,5 +68,20 @@ namespace ShoppingList.Tests.Shoppings
             // assert
             Assert.IsType<CreatedResult>(result);
         }
+
+        [Fact]
+        public async Task Post_ReturnBadRequest_ListOfProducts_Empty()
+        {
+            // arrange 
+            Shopping shopping = new Shopping()
+            {
+                Date = DateTime.Now,
+                Products = null
+            };
+            // act
+            var result = await _controller.Post(shopping);
+            // assert
+            Assert.IsType<BadRequestResult>(result);
+        }
     }
 }

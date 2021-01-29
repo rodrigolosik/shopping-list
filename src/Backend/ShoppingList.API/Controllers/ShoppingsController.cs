@@ -32,6 +32,9 @@ namespace ShoppingList.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Shopping shopping)
         {
+            if (shopping == null || shopping.Products == null || shopping.Products?.Count == 0) 
+                return BadRequest();
+
             await _service.Create(shopping);
             return Created($"Shoppings", shopping);
         }
