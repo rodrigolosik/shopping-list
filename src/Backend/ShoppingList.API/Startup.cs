@@ -6,8 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ShoppingList.Domain.Settings;
-using ShoppingList.Repository.Products;
-using ShoppingList.Service.Products;
+using ShoppingList.Repository.Shoppings;
+using ShoppingList.Service.Shoppings;
 
 namespace ShoppingList.API
 {
@@ -29,8 +29,8 @@ namespace ShoppingList.API
             services.AddSingleton<IDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
-            services.AddSingleton<IProductRepository, ProductRepository>();
-            services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IShoppingRepository, ShoppingRepository>();
+            services.AddSingleton<IShoppingService, ShoppingService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
