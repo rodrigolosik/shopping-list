@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using ShoppingList.Domain.Models;
 using ShoppingList.Service.Shoppings;
 using System.Threading.Tasks;
@@ -10,12 +9,10 @@ namespace ShoppingList.API.Controllers
     [ApiController]
     public class ShoppingsController : ControllerBase
     {
-        private readonly ILogger<ShoppingsController> _logger;
         private readonly IShoppingService _service;
 
-        public ShoppingsController(ILogger<ShoppingsController> logger, IShoppingService service)
+        public ShoppingsController(IShoppingService service)
         {
-            _logger = logger;
             _service = service;
         }
 
@@ -36,7 +33,7 @@ namespace ShoppingList.API.Controllers
         public async Task<IActionResult> Post([FromBody] Shopping shopping)
         {
             await _service.Create(shopping);
-            return Created($"Shopping", shopping);
+            return Created($"Shoppings", shopping);
         }
     }
 }
